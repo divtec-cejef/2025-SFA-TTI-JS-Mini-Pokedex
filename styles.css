@@ -13,7 +13,6 @@ body {
 }
 
 .pokemon-card {
-    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     margin: 10px;
@@ -21,6 +20,8 @@ body {
     width: 150px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
+    color: white;
+    transition: transform 0.2s ease-in-out;
 }
 
 .pokemon-card img {
@@ -36,4 +37,9 @@ body {
 .pokemon-card p {
     font-size: 0.9em;
     margin: 5px 0;
+}
+
+/* Ajouter un effet au survol */
+.pokemon-card:hover {
+    transform: scale(1.05);
 }
