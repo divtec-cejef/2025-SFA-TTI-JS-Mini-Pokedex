@@ -48,10 +48,10 @@ function displayPokemons(pokemons) {
         const types = pokemon.type.split(',');
         let bgColor;
         if (types.length === 2) {
-            // Diviser la carte en deux couleurs séparées en diagonale
+            // Diviser la carte en deux couleurs sans dégradé
             const color1 = typeColors[types[0].trim()] || '#ccc';
             const color2 = typeColors[types[1].trim()] || '#ccc';
-            bgColor = `linear-gradient(135deg, ${color1} 50%, ${color2} 50%)`;
+            bgColor = `linear-gradient(to right, ${color1} 50%, ${color2} 50%)`;
         } else {
             // Couleur unie pour un seul type
             const color = typeColors[types[0].trim()] || '#ccc';
