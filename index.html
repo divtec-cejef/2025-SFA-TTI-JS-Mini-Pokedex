@@ -9,7 +9,7 @@
 <body>
 <h1>Pokémon Pokedex</h1>
 
-<!-- Menu de recherche et de filtrage -->
+<!-- Menu de recherche, filtrage, et tri -->
 <div class="search-menu">
   <input type="text" id="search-bar" placeholder="Rechercher un Pokémon par nom...">
   <select id="type-filter">
@@ -28,6 +28,12 @@
     <option value="Roche">Roche</option>
     <option value="Sol">Sol</option>
     <option value="Psy">Psy</option>
+  </select>
+  <select id="sort-order">
+    <option value="name-asc">Nom (A-Z)</option>
+    <option value="name-desc">Nom (Z-A)</option>
+    <option value="level-asc">Niveau (croissant)</option>
+    <option value="level-desc">Niveau (décroissant)</option>
   </select>
 </div>
 

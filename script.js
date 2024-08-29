@@ -1,18 +1,18 @@
 const typeColors = {
-    'Électrique': '#FFD700',        // Jaune
-    'Plante': '#78C850',            // Vert
-    'Poison': '#A040A0',            // Violet foncé
-    'Feu': '#F08030',               // Orange
-    'Eau': '#6890F0',               // Bleu
-    'Normal': '#A8A878',            // Beige/Vert clair
-    'Fée': '#EE99AC',               // Rose
-    'Spectre': '#705898',           // Violet
-    'Combat': '#C03028',            // Rouge foncé
-    'Vol': '#A890F0',               // Bleu ciel
-    'Glace': '#98D8D8',             // Cyan clair
-    'Roche': '#B8A038',             // Marron
-    'Sol': '#E0C068',               // Jaune sable
-    'Psy': '#F85888'                // Rose vif
+    'Électrique': '#FFD700',
+    'Plante': '#78C850',
+    'Poison': '#A040A0',
+    'Feu': '#F08030',
+    'Eau': '#6890F0',
+    'Normal': '#A8A878',
+    'Fée': '#EE99AC',
+    'Spectre': '#705898',
+    'Combat': '#C03028',
+    'Vol': '#A890F0',
+    'Glace': '#98D8D8',
+    'Roche': '#B8A038',
+    'Sol': '#E0C068',
+    'Psy': '#F85888'
 };
 
 const pokemons = [
@@ -37,7 +37,7 @@ const pokemons = [
 
 function displayPokemons(pokemons) {
     const container = document.querySelector('.pokemon-container');
-    container.innerHTML = ''; // Vider le container avant d'ajouter les nouveaux éléments
+    container.innerHTML = '';
 
     pokemons.forEach(pokemon => {
         const card = document.createElement('div');
@@ -67,22 +67,35 @@ function displayPokemons(pokemons) {
     });
 }
 
-function filterPokemons() {
+function filterAndSortPokemons() {
     const searchQuery = document.getElementById('search-bar').value.toLowerCase();
     const selectedType = document.getElementById('type-filter').value;
+    const sortOrder = document.getElementById('sort-order').value;
 
-    const filteredPokemons = pokemons.filter(pokemon => {
+    let filteredPokemons = pokemons.filter(pokemon => {
         const matchesName = pokemon.name.toLowerCase().includes(searchQuery);
         const matchesType = selectedType === "" || pokemon.type.includes(selectedType);
         return matchesName && matchesType;
     });
 
+    // Trier les Pokémon
+    filteredPokemons.sort((a, b) => {
+        if (sortOrder === 'name-asc') {
+            return a.name.localeCompare(b.name);
+        } else if (sortOrder === 'name-desc') {
+            return b.name.localeCompare(a.name);
+        } else if (sortOrder === 'level-asc') {
+            return a.level - b.level;
+        } else if (sortOrder === 'level-desc') {
+            return b.level - a.level;
+        }
+    });
+
     displayPokemons(filteredPokemons);
 }
 
-// Attacher les événements de filtrage
-document.getElementById('search-bar').addEventListener('input', filterPokemons);
-document.getElementById('type-filter').addEventListener('change', filterPokemons);
+document.getElementById('search-bar').addEventListener('input', filterAndSortPokemons);
+document.getElementById('type-filter').addEventListener('change', filterAndSortPokemons);
+document.getElementById('sort-order').addEventListener('change', filterAndSortPokemons);
 
-// Afficher tous les Pokémon au chargement de la page
 displayPokemons(pokemons);
