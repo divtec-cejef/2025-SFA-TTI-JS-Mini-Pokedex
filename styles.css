@@ -1,11 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    text-align: center;
-    padding: 20px;
-}
-
 .pokemon-container {
     display: flex;
     flex-wrap: wrap;
@@ -18,28 +10,47 @@ body {
     margin: 10px;
     padding: 20px;
     width: 150px;
+    height: 220px; /* Fixer la hauteur pour que la carte ait une taille uniforme */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     color: white;
-    transition: transform 0.2s ease-in-out;
+    overflow: hidden; /* Empêche les éléments de dépasser les limites de la carte */
 }
 
 .pokemon-card img {
     width: 100px;
     height: 100px;
+    margin-bottom: 10px;
 }
 
 .pokemon-card h2 {
     font-size: 1.2em;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .pokemon-card p {
     font-size: 0.9em;
-    margin: 5px 0;
+    margin: 0;
 }
 
-/* Ajouter un effet au survol */
-.pokemon-card:hover {
-    transform: scale(1.05);
+.search-menu {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#search-bar {
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#type-filter {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }

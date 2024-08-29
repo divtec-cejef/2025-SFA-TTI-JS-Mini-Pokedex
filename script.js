@@ -1,3 +1,20 @@
+const typeColors = {
+    'Électrique': '#FFD700',        // Jaune
+    'Plante': '#78C850',            // Vert
+    'Poison': '#A040A0',            // Violet foncé
+    'Feu': '#F08030',               // Orange
+    'Eau': '#6890F0',               // Bleu
+    'Normal': '#A8A878',            // Beige/Vert clair
+    'Fée': '#EE99AC',               // Rose
+    'Spectre': '#705898',           // Violet
+    'Combat': '#C03028',            // Rouge foncé
+    'Vol': '#A890F0',               // Bleu ciel
+    'Glace': '#98D8D8',             // Cyan clair
+    'Roche': '#B8A038',             // Marron
+    'Sol': '#E0C068',               // Jaune sable
+    'Psy': '#F85888'                // Rose vif
+};
+
 const pokemons = [
     { name: 'Pikachu', type: 'Électrique', level: 35, img: 'images/pikachu.png' },
     { name: 'Bulbizarre', type: 'Plante,Poison', level: 15, img: 'images/bulbizarre.png' },
@@ -18,24 +35,6 @@ const pokemons = [
     { name: 'Mewtwo', type: 'Psy', level: 70, img: 'images/mewtwo.png' }
 ];
 
-// Associer une couleur de fond pour chaque type de Pokémon
-const typeColors = {
-    'Électrique': '#FFD700',        // Jaune
-    'Plante': '#78C850',            // Vert
-    'Poison': '#A040A0',            // Violet foncé
-    'Feu': '#F08030',               // Orange
-    'Eau': '#6890F0',               // Bleu
-    'Normal': '#A8A878',            // Beige/Vert clair
-    'Fée': '#EE99AC',               // Rose
-    'Spectre': '#705898',           // Violet
-    'Combat': '#C03028',            // Rouge foncé
-    'Vol': '#A890F0',               // Bleu ciel
-    'Glace': '#98D8D8',             // Cyan clair
-    'Roche': '#B8A038',             // Marron
-    'Sol': '#E0C068',               // Jaune sable
-    'Psy': '#F85888'                // Rose vif
-};
-
 function displayPokemons(pokemons) {
     const container = document.querySelector('.pokemon-container');
     container.innerHTML = ''; // Vider le container avant d'ajouter les nouveaux éléments
@@ -44,16 +43,13 @@ function displayPokemons(pokemons) {
         const card = document.createElement('div');
         card.className = 'pokemon-card';
 
-        // Exploser les types et gérer les couleurs
         const types = pokemon.type.split(',');
         let bgColor;
         if (types.length === 2) {
-            // Diviser la carte en deux couleurs sans dégradé
             const color1 = typeColors[types[0].trim()] || '#ccc';
             const color2 = typeColors[types[1].trim()] || '#ccc';
             bgColor = `linear-gradient(to right, ${color1} 50%, ${color2} 50%)`;
         } else {
-            // Couleur unie pour un seul type
             const color = typeColors[types[0].trim()] || '#ccc';
             bgColor = color;
         }
@@ -71,5 +67,22 @@ function displayPokemons(pokemons) {
     });
 }
 
-// Exemple d'appel à la fonction pour afficher tous les Pokémon
+function filterPokemons() {
+    const searchQuery = document.getElementById('search-bar').value.toLowerCase();
+    const selectedType = document.getElementById('type-filter').value;
+
+    const filteredPokemons = pokemons.filter(pokemon => {
+        const matchesName = pokemon.name.toLowerCase().includes(searchQuery);
+        const matchesType = selectedType === "" || pokemon.type.includes(selectedType);
+        return matchesName && matchesType;
+    });
+
+    displayPokemons(filteredPokemons);
+}
+
+// Attacher les événements de filtrage
+document.getElementById('search-bar').addEventListener('input', filterPokemons);
+document.getElementById('type-filter').addEventListener('change', filterPokemons);
+
+// Afficher tous les Pokémon au chargement de la page
 displayPokemons(pokemons);
