@@ -50,6 +50,26 @@ const pokemons = [
 const container = document.querySelector('.pokemon-container');
 
 /**
+ * Génère le HTML pour un Pokémon
+ * @param {Object} pokemon - Un objet Pokémon avec les propriétés name, type, level, img
+ * @returns {string} - Le HTML de la carte Pokémon
+ */
+function generatePokemonCardHTML({ name, type, level, img }) {
+    const types = type.split(',');
+
+    const imgPath = `images/${img}`;
+
+    return `
+        <div class="pokemon-card" style="background: #705898;">
+            <img src="${imgPath}" alt="${name}">
+            <h2>${name}</h2>
+            <div>Type: ${types.join(' / ')}</div>
+            <div>Niveau: ${level}</div>
+        </div>
+    `;
+}
+
+/**
  * Affiche les Pokémon dans le conteneur spécifié.
  * @param {Array<Object>} pokemons - Tableau d'objets représentant les Pokémon.
  */
@@ -63,13 +83,7 @@ function displayPokemons(pokemons) {
     let result = ''; // Variable pour stocker le HTML généré
 
     for (const pokemon of pokemons) {
-        types = pokemon.type.split(',');
-        console.log(types);
-        if(types.length > 1) {
-            result +=   `<p>${pokemon.name} <small>${types[0]}</small> <small>${types[1]}</small></p>`;
-        } else {
-            result +=   `<p>${pokemon.name} <small>${types[0]}</small></p>`;
-        }
+        result += generatePokemonCardHTML(pokemon);
     }
     // On passe par une variable intermédiaire pour éviter de modifier le DOM à chaque itération
     // Cela améliore les performances en réduisant le nombre de reflows
