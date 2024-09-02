@@ -51,7 +51,7 @@ small {
     margin-bottom: 10px;
 }
 
-.pokemon-card p {
+.pokemon-card div {
     font-size: 0.9em;
     margin: 5px 0;
 }

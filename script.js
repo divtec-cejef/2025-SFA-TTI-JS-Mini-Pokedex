@@ -76,8 +76,8 @@ function generatePokemonCardHTML({ name, type, level, img }) {
         <div class="pokemon-card" style="background: ${bgColor};">
             <img src="${imgPath}" alt="${name}">
             <h2>${name}</h2>
-            <p>Type: ${types.join(' / ')}</p>
-            <p>Niveau: ${level}</p>
+            <div>Type: ${types.join(' / ')}</div>
+            <div>Niveau: ${level}</div>
         </div>
     `;
 }
