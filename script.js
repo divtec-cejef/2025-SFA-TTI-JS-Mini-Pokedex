@@ -1,5 +1,14 @@
+/**
+ * Exercice : Mini Pokédex
+ * @author Steve Fallet <steve.fallet@dvitec.ch>
+ * @since 2024-09-01
+ */
+
+
+// Couleur par défaut pour les types de Pokémon non définis
 const DEFAULT_COLOR = '#ccc';
 
+// Couleurs pour chaque type de Pokémon
 const typeColors = {
     'Électrique': '#FFD700',
     'Plante': '#78C850',
@@ -17,6 +26,7 @@ const typeColors = {
     'Psy': '#F85888'
 };
 
+// Tableau d'objets représentant les Pokémon
 const pokemons = [
     { name: 'Pikachu', type: 'Électrique', level: 35, img: 'pikachu.png' },
     { name: 'Bulbizarre', type: 'Plante,Poison', level: 15, img: 'bulbizarre.png' },
