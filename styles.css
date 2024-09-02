@@ -4,6 +4,8 @@ body {
     color: #333;
     text-align: center;
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 small {
@@ -17,6 +19,14 @@ small {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.pokemon-container p {
+    margin: .5em;
+    padding: .5em 1em;
+    font-size: 1.5em;
+    color: #333;
+    background-color: #FFD700;
 }
 
 .pokemon-card {
