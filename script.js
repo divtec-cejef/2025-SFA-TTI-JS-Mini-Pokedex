@@ -63,7 +63,13 @@ function displayPokemons(pokemons) {
     let result = ''; // Variable pour stocker le HTML généré
 
     for (const pokemon of pokemons) {
-        result +=   `<p>${pokemon.name}</p>`;
+        types = pokemon.type.split(',');
+        console.log(types);
+        if(types.length > 1) {
+            result +=   `<p>${pokemon.name} <small>${types[0]}</small> <small>${types[1]}</small></p>`;
+        } else {
+            result +=   `<p>${pokemon.name} <small>${types[0]}</small></p>`;
+        }
     }
     // On passe par une variable intermédiaire pour éviter de modifier le DOM à chaque itération
     // Cela améliore les performances en réduisant le nombre de reflows
