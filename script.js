@@ -77,18 +77,31 @@ function generatePokemonCardHTML({ name, type, level, img }) {
  * @param {Array<Object>} pokemons - Tableau d'objets représentant les Pokémon.
  */
 function displayPokemons(pokemons) {
-    container.innerHTML = '';
+    if (pokemons.length === 0) {
+        // Si aucun Pokémon ne correspond, afficher un message amusant
+        container.innerHTML = `<p>Dracaufeu a tout brûlé, aucun Pokémon ne correspond à ta recherche !</p>`;
+        return;
+    }
+
+    let result = ''; // Variable pour stocker le HTML généré
 
     for (const pokemon of pokemons) {
-        // Validation des données du Pokémon
+        // Vérifie que les données du Pokémon sont complètes
         if (!pokemon.name || !pokemon.type || !pokemon.level || !pokemon.img) {
+            // Affiche un message d'erreur dans la console
             console.error('Pokémon data is incomplete:', pokemon);
+            // Ignore ce Pokémon et passe au suivant
             continue;
         }
 
-        // Ajoute le HTML généré à l'intérieur du conteneur
-        container.innerHTML += generatePokemonCardHTML(pokemon);
+        // Génère le HTML pour la carte Pokémon
+        // et l'ajoute à la variable de résultat
+        result += generatePokemonCardHTML(pokemon);
     }
+    // Affiche les cartes Pokémon dans le conteneur
+    // On passe par une variable intermédiaire pour éviter de modifier le DOM à chaque itération
+    // Cela améliore les performances en réduisant le nombre de reflows
+    container.innerHTML = result;
 }
 
 /**
