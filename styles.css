@@ -21,6 +21,14 @@ small {
     justify-content: center;
 }
 
+.pokemon-container p {
+    margin: .5em;
+    padding: .5em 1em;
+    font-size: 1.5em;
+    color: #333;
+    background-color: #FFD700;
+}
+
 .pokemon-card {
     border: 1px solid #ddd;
     border-radius: 8px;
