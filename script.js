@@ -50,6 +50,7 @@ const pokemons = [
 // Stockage des références aux éléments HTML
 const container = document.querySelector('.pokemon-container');
 const searchBar = document.getElementById('search-bar');
+const typeFilter = document.getElementById('type-filter');
 
 /**
  * Génère le HTML pour un Pokémon
@@ -117,14 +118,17 @@ function displayPokemons(pokemons) {
  */
 function filterAndSortPokemons() {
     const searchQuery = searchBar.value.toLowerCase();
+    const selectedType = typeFilter.value;
 
     let filteredPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchQuery));
+    filteredPokemons = filteredPokemons.filter(pokemon => selectedType === "" || pokemon.type.includes(selectedType));
 
     displayPokemons(filteredPokemons);
 }
 
 // Ajout des gestionnaires d'événements
 searchBar.addEventListener('input', filterAndSortPokemons);
+typeFilter.addEventListener('change', filterAndSortPokemons);
 
 // Appliquer le tri et le filtrage par défaut
 filterAndSortPokemons();
