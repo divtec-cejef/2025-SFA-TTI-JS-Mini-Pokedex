@@ -11,7 +11,9 @@
 
 <!-- Menu de recherche, filtrage, et tri -->
 <div class="search-menu">
+  <!-- Champ de recherche -->
   <input type="text" id="search-bar" placeholder="Rechercher un Pokémon par nom...">
+  <!-- Liste déroulante pour filtrer par type -->
   <select id="type-filter">
     <option value="">Tous les types</option>
     <option value="Électrique">Électrique</option>
@@ -29,6 +31,7 @@
     <option value="Sol">Sol</option>
     <option value="Psy">Psy</option>
   </select>
+  <!-- Liste déroulante pour trier les Pokémons -->
   <select id="sort-order">
     <option value="name-asc">Nom (A-Z)</option>
     <option value="name-desc">Nom (Z-A)</option>
@@ -37,17 +40,9 @@
   </select>
 </div>
 
+<!-- Conteneur pour les cartes Pokémon -->
 <div class="pokemon-container">
   <!-- Les cartes Pokémon apparaîtront ici -->
-</div>
-
-<div class="pokemon-container2">
-  <p>Pikachu <small>Feu</small> <small>Eau</small></p>
-  <p>Bulbizarre</p>
-  <p>Salamèche</p>
-  <p>Carapuce</p>
-  <p>Rondoudou</p>
-  <!-- Les autres Pokémon -->
 </div>
 
 <script src="script.js"></script>
