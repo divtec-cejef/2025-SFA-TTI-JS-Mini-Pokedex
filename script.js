@@ -56,11 +56,20 @@ const container = document.querySelector('.pokemon-container');
  */
 function generatePokemonCardHTML({ name, type, level, img }) {
     const types = type.split(',');
+    let bgColor;
+
+    if (types.length === 2) {
+        const color1 = typeColors[types[0].trim()] || DEFAULT_COLOR;
+        const color2 = typeColors[types[1].trim()] || DEFAULT_COLOR;
+        bgColor = `linear-gradient(to right, ${color1} 50%, ${color2} 50%)`;
+    } else {
+        bgColor = typeColors[types[0].trim()] || DEFAULT_COLOR;
+    }
 
     const imgPath = `images/${img}`;
 
     return `
-        <div class="pokemon-card" style="background: #705898;">
+        <div class="pokemon-card" style="background: ${bgColor};">
             <img src="${imgPath}" alt="${name}">
             <h2>${name}</h2>
             <div>Type: ${types.join(' / ')}</div>
