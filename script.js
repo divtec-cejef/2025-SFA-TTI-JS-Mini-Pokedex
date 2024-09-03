@@ -4,6 +4,7 @@
  * @since 2024-09-01
  */
 
+'use strict';
 
 // Couleur par défaut pour les types de Pokémon non définis
 const DEFAULT_COLOR = '#ccc';
