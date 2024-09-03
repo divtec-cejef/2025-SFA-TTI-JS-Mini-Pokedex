@@ -50,8 +50,6 @@ const pokemons = [
 // Stockage des références aux éléments HTML
 const container = document.querySelector('.pokemon-container');
 const searchBar = document.getElementById('search-bar');
-const typeFilter = document.getElementById('type-filter');
-const sortOrder = document.getElementById('sort-order');
 
 /**
  * Génère le HTML pour un Pokémon
@@ -119,35 +117,14 @@ function displayPokemons(pokemons) {
  */
 function filterAndSortPokemons() {
     const searchQuery = searchBar.value.toLowerCase();
-    const selectedType = typeFilter.value;
-    const selectedSortOrder = sortOrder.value;
 
-    let filteredPokemons = pokemons.filter(pokemon => {
-        const matchesName = pokemon.name.toLowerCase().includes(searchQuery);
-        const matchesType = selectedType === "" || pokemon.type.includes(selectedType);
-        return matchesName && matchesType;
-    });
-
-    // Trier les Pokémon en fonction du critère sélectionné
-    filteredPokemons.sort((a, b) => {
-        if (selectedSortOrder === 'name-asc') {
-            return a.name.localeCompare(b.name);  // Tri par nom A-Z
-        } else if (selectedSortOrder === 'name-desc') {
-            return b.name.localeCompare(a.name);  // Tri par nom Z-A
-        } else if (selectedSortOrder === 'level-asc') {
-            return a.level - b.level;  // Tri par niveau croissant
-        } else if (selectedSortOrder === 'level-desc') {
-            return b.level - a.level;  // Tri par niveau décroissant
-        }
-    });
+    let filteredPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchQuery));
 
     displayPokemons(filteredPokemons);
 }
 
 // Ajout des gestionnaires d'événements
 searchBar.addEventListener('input', filterAndSortPokemons);
-typeFilter.addEventListener('change', filterAndSortPokemons);
-sortOrder.addEventListener('change', filterAndSortPokemons);
 
 // Appliquer le tri et le filtrage par défaut
 filterAndSortPokemons();
