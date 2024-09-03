@@ -4,6 +4,8 @@
  * @since 2024-09-01
  */
 
+'use strict';
+
 // Couleur par défaut pour les types de Pokémon non définis
 const DEFAULT_COLOR = '#ccc';
 
@@ -63,7 +65,7 @@ function displayPokemons(pokemons) {
     let result = ''; // Variable pour stocker le HTML généré
 
     for (const pokemon of pokemons) {
-        types = pokemon.type.split(',');
+        let types = pokemon.type.split(',');
         console.log(types);
         if(types.length > 1) {
             result +=   `<p>${pokemon.name} <small>${types[0]}</small> <small>${types[1]}</small></p>`;
